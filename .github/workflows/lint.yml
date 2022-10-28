@@ -21,6 +21,6 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install Ansible
-        run: pip install ansible ansible-galaxy
+        run: pip install ansible
       - name: Run Tests
         run: ansible-playbook tests/test.yml -i tests/inventory --syntax-check
