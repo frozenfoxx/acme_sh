@@ -1,18 +1,22 @@
 ---
-- ansible.builtin.include: install.yml
+- name: Install acme.sh
+  ansible.builtin.import_tasks: install.yml
   tags:
     - acme_sh_install
 
-- ansible.builtin.include: logging.yml
+- name: Configure logging for acme.sh
+  ansible.builtin.import_tasks: logging.yml
   tags:
     - acme_sh_logging
   when: acme_sh_logging
 
-- ansible.builtin.include: notify.yml
+- name: Configure notification for acme.sh 
+  ansible.builtin.import_tasks: notify.yml
   tags:
     - acme_sh_notify
   when: acme_sh_notify
 
-- ansible.builtin.include: manage.yml
+- name: Configure management of certificates using acme.sh
+  ansible.builtin.import_tasks: manage.yml
   tags:
     - acme_sh_manage

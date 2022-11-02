@@ -1,6 +1,6 @@
-![Current tag](https://img.shields.io/github/tag/thermistor/acme_sh.svg)
-
 # acme_sh
+
+[![Actions Status](https://github.com/frozenfoxx/acme_sh/workflows/lint/badge.svg)](https://github.com/frozenfoxx/acme_sh/actions)
 
 Setup [acme.sh](https://github.com/acmesh-official/acme.sh) in dns api mode via ansible to generate letsencrypt.org certs.
 
@@ -31,7 +31,7 @@ Usage:
 
     - hosts: servers
       roles:
-        - role: thermistor.acme_sh
+        - role: frozenfoxx.acme_sh
           acme_sh_subject_names:
             - example.com
             - www.example.com
@@ -44,7 +44,7 @@ here is the same example but with logging added:
 
     - hosts: servers
       roles:
-        - role: thermistor.acme_sh
+        - role: frozenfoxx.acme_sh
           acme_sh_logging: True
           acme_sh_subject_names:
             - example.com
@@ -58,7 +58,7 @@ and with mailgun notifications:
 
     - hosts: servers
       roles:
-        - role: thermistor.acme_sh
+        - role: frozenfoxx.acme_sh
           acme_sh_notify: True
           acme_sh_notify_hooks:
             - mailgun
@@ -94,4 +94,5 @@ MIT
 We borrowed a lot from these alternatives:
 
 * [nickjj.acme_sh](https://galaxy.ansible.com/nickjj/acme_sh) - multi cert capable
+* [thermistor.acme_sh](https://galaxy.ansible.com/thermistor/acme_sh) - multi cert capable
 * [verosk.acme-sh](https://galaxy.ansible.com/verosk/acme-sh) - just install
