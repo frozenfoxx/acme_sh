@@ -1,7 +1,9 @@
 galaxy_info:
-  author: Weston Triemstra
+  author: FrozenFOXX
   description: Configure acme.sh
-  company: Netsign
+  company: Church of Foxx
+  role_name: acme_sh
+  namespace: frozenfoxx
 
   license: MIT
 
