@@ -1,18 +1,18 @@
 ---
-- include: install.yml
+- ansible.builtin.include: install.yml
   tags:
     - acme_sh_install
 
-- include: logging.yml
+- ansible.builtin.include: logging.yml
   tags:
     - acme_sh_logging
   when: acme_sh_logging
 
-- include: notify.yml
+- ansible.builtin.include: notify.yml
   tags:
     - acme_sh_notify
   when: acme_sh_notify
 
-- include: manage.yml
+- ansible.builtin.include: manage.yml
   tags:
     - acme_sh_manage

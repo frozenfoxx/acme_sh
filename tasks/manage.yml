@@ -1,11 +1,11 @@
 ---
 - name: Check if cert has been created
-  stat:
+  ansible.builtin.stat:
     path: "{{ acme_sh_dir }}/{{ acme_sh_first_subject }}/{{ acme_sh_first_subject }}.cer"
   register: cert
 
 - name: Issue acme.sh certs via dns
-  command: >-
+  ansible.builtin.command: >-
     ./acme.sh --issue {{ subject_list }} -k {{ acme_sh_keylength }} --server {{ acme_sh_server }}
       --dns {{ acme_sh_dns_provider }} --dnssleep {{ acme_sh_dns_sleep }}
   args:
@@ -23,7 +23,7 @@
     msg: Changed? {{ certs.changed }}
 
 - name: Ensure public cert dir exists with correct permissions
-  file:
+  ansible.builtin.file:
     path: "{{ acme_sh_certs_public_dir }}"
     state: directory
     owner: root
@@ -31,7 +31,7 @@
     mode: 0775
 
 - name: Ensure private cert dir exists with correct permissions
-  file:
+  ansible.builtin.file:
     path: "{{ acme_sh_certs_private_dir }}"
     state: directory
     owner: root
@@ -39,7 +39,7 @@
     mode: 0770
 
 - name: Install certs
-  command: >-
+  ansible.builtin.command: >-
     ./acme.sh --install-cert -d {{ acme_sh_first_subject }}
       --key-file {{ acme_sh_cert_key_file }}
       --fullchain-file {{ acme_sh_cert_fullchain_file }}
