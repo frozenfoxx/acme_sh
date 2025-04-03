@@ -13,7 +13,7 @@
   vars:
     subject_list: -d {{ acme_sh_subject_names | join(" -d ") }}
   environment: "{{ acme_sh_env }}"
-  become: yes
+  become: True
   become_user: "{{ acme_sh_user }}"
   register: certs
   when: not cert.stat.exists
@@ -28,7 +28,7 @@
     state: directory
     owner: root
     group: "{{ acme_sh_user }}"
-    mode: 0775
+    mode: '0775'
 
 - name: Ensure private cert dir exists with correct permissions
   ansible.builtin.file:
@@ -36,7 +36,7 @@
     state: directory
     owner: root
     group: "{{ acme_sh_user }}"
-    mode: 0770
+    mode: '0770'
 
 - name: Install certs
   ansible.builtin.command: >-
@@ -48,7 +48,7 @@
       --debug
   args:
     chdir: "{{ acme_sh_dir }}"
-  become: yes
+  become: True
   become_user: "{{ acme_sh_user }}"
   when: (certs is defined and certs.changed) or acme_sh_force_install
   tags:

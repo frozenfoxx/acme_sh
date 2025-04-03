@@ -4,6 +4,8 @@
     update_cache: True
     name: git
     state: present
+  tags:
+    - acme_sh
 
 - name: Create user to run acme.sh
   ansible.builtin.user:
@@ -12,11 +14,13 @@
     system: True
     shell: /bin/bash
     state: present
+  tags:
+    - acme_sh
 
 - name: Set permissions on acme user home dir
   ansible.builtin.file:
     path: "{{ acme_sh_user_dir }}"
-    mode: 0700
+    mode: '0700'
 
 - name: Clone acme.sh repository
   ansible.builtin.git:
@@ -31,7 +35,7 @@
     dest: /etc/sudoers.d/letsencrypt_restart_nginx
     owner: root
     group: root
-    mode: 0440
+    mode: '0440'
 
 - name: Install acme.sh
   ansible.builtin.command: >-
@@ -39,7 +43,7 @@
   args:
     chdir: /usr/local/src/acme.sh
     creates: "{{ acme_sh_dir }}/acme.sh"
-  become: yes
+  become: True
   become_user: "{{ acme_sh_user }}"
 
 - name: Enable acme.sh auto-upgrade

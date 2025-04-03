@@ -16,6 +16,6 @@
   vars:
     notify_hook_list: --notify-hook {{ acme_sh_notify_hooks | join(" --notify-hook ") }}
   environment: "{{ acme_sh_env }}"
-  become: yes
+  become: True
   become_user: "{{ acme_sh_user }}"
   when: not notify_set.found
