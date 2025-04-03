@@ -10,7 +10,7 @@
     - acme_sh_logging
   when: acme_sh_logging
 
-- name: Configure notification for acme.sh 
+- name: Configure notification for acme.sh
   ansible.builtin.import_tasks: notify.yml
   tags:
     - acme_sh_notify
